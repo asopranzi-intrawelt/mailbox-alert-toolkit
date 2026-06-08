@@ -1,0 +1,37 @@
+{
+  "tenant": {
+    "domain":   "esempio.com",
+    "adminUpn": "admin@esempio.com"
+  },
+  "appRegistration": {
+    "enabled":              true,
+    "clientId":             "00000000-0000-0000-0000-000000000000",
+    "tenantId":             "00000000-0000-0000-0000-000000000000",
+    "certificateThumbprint":"INSERIRE_THUMBPRINT_CERTIFICATO",
+    "organization":         "esempio.onmicrosoft.com"
+  },
+  "mail": {
+    "to":         "it@esempio.com",
+    "from":       "mailer@esempio.com",
+    "smtpServer": "smtp.office365.com",
+    "smtpPort":   587
+  },
+  "thresholds": {
+    "warningPercent":  80,
+    "criticalPercent": 95
+  },
+  "retention": {
+    "maxFilesPerType": 365,
+    "keepHistoryDb":   true
+  },
+  "collection": {
+    "includeFolderStats":   true,
+    "includeForwardingInfo": true,
+    "includeHoldInfo":       true
+  },
+  "notifications": {
+    "notifyMailboxOwners":   true,
+    "skipResourceMailboxes": true,
+    "itSupportAddress":      "it@esempio.com"
+  }
+}

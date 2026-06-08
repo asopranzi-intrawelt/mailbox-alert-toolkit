@@ -1,0 +1,29 @@
+# --- Segreti / credenziali ---
+credentials/
+config.json
+*.pfx
+*.key
+*.p12
+app-cert.cer
+
+# --- Dati generati / sensibili (caselle, report, storico) ---
+reports/
+history/
+logs/
+
+# --- Ambiente Python ---
+venv/
+__pycache__/
+*.pyc
+
+# --- Artefatti runtime / locali ---
+.setup_complete
+_screenshots/
+.claude/
+
+# --- Documentazione binaria (contiene dati reali; usare README.md) ---
+README.docx
+
+# --- Script di servizio migrazione (temporanei) ---
+fix-scheduled-tasks.ps1
+fix-scheduled-tasks.log
