@@ -1,4 +1,4 @@
-# --- Segreti / credenziali ---
+﻿# --- Segreti / credenziali ---
 credentials/
 config.json
 *.pfx
@@ -19,11 +19,12 @@ __pycache__/
 # --- Artefatti runtime / locali ---
 .setup_complete
 _screenshots/
-.claude/
-
+.claude/settings.local.json
+.claude/memory/*.local.md
 # --- Documentazione binaria (contiene dati reali; usare README.md) ---
 README.docx
 
 # --- Script di servizio migrazione (temporanei) ---
 fix-scheduled-tasks.ps1
 fix-scheduled-tasks.log
+
