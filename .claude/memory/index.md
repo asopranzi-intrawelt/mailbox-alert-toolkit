@@ -7,22 +7,22 @@
 ## Stato
 
 ```
-Branch attivo:        <branch>
-Commit di riferimento: <hash del commit corrente>
-Data snapshot:        <YYYY-MM-DD>
+Branch attivo:         main
+Commit di riferimento: a8eab4c
+Data snapshot:         2026-06-18
 ```
 
 ## Stato di verifica delle schede
 
 | Scheda | last-verified | Stato |
 |---|---|---|
-| STACK.md | <hash> | <aggiornata / stale / obsoleta> |
-| design-and-security.md | <hash> | <stato> |
-| deployment.md | <hash> | <stato> |
-| dev-testing.md | <hash> | <stato> |
-| current-work.md | <hash> | <stato> |
-| roadmap.md | <hash> | <stato> |
+| STACK.md | a8eab4c | aggiornata |
+| design-and-security.md | a8eab4c | aggiornata |
+| deployment.md | a8eab4c | aggiornata |
+| dev-testing.md | a8eab4c | aggiornata |
+| current-work.md | a8eab4c | aggiornata |
+| roadmap.md | a8eab4c | aggiornata |
 
 ## Punto di ripresa
 
-<una riga di prossima azione concreta che dice da dove ricominciare>
+Toolkit completo e schede popolate. Nessuna feature attiva. Prossima azione: definire la roadmap con l'utente oppure iniziare a sviluppare una modifica al codice.
