@@ -9,8 +9,7 @@ stato: nessuna feature attiva
 
 # Lavoro in corso
 
-> La fonte di verità su cosa è fatto resta `memory/index.md` e il work-log, non le spunte di
-> questo file.
+> La fonte di verità su cosa è fatto resta `memory/index.md` e il work-log, non le spunte di questo file.
 
 Nessuna feature attiva al commit `a8eab4c`. Il toolkit è stato committato completo all'initial commit (`285943e`) e il secondo commit (`a8eab4c`) ha adottato lo standard di progetto `.claude`. Non ci sono branch di feature aperti né modifiche pendenti.
 
