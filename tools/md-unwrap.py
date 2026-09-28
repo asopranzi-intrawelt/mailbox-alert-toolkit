@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 """md-unwrap - srotola i paragrafi hard-wrapped nei file Markdown.
 
-L'unica trasformazione applicata e' togliere gli a capo interni a un blocco di testo
+L'unica trasformazione applicata è togliere gli a capo interni a un blocco di testo
 (paragrafo, voce di elenco, riga di citazione) e l'indentazione di continuazione,
 unendo i pezzi con un singolo spazio. Nient'altro viene normalizzato: marcatori di
 lista, tabelle, stili di titolo, escaping e ordine restano come sono.
 
-Zero dipendenze obbligatorie. Se `markdown-it-py` e' importabile, ogni file viene
+Zero dipendenze obbligatorie. Se `markdown-it-py` è importabile, ogni file viene
 validato con un oracolo di rendering (l'HTML normalizzato deve restare identico) e in
 caso di divergenza il file non viene scritto.
 
@@ -50,8 +50,8 @@ RE_LIST = re.compile(r'^([-+*]|\d{1,9}[.)])(?:([ \t]+)(.*)|[ \t]*)$')
 RE_LINKDEF = re.compile(r'^\[(?:[^\[\]\\]|\\.)*\]:(.*)$')
 # Destinazione di una definizione di link: un solo token senza spazi, o fra
 # parentesi angolari, con titolo facoltativo. Se il resto della riga non ha
-# questa forma, quella riga non e' una definizione di link ma testo etichettato,
-# tipicamente una nota a pie' di pagina `[^n]: testo ...`.
+# questa forma, quella riga non è una definizione di link ma testo etichettato,
+# tipicamente una nota a piè di pagina `[^n]: testo ...`.
 RE_LINK_DEST = re.compile(
     r'^[ \t]*(?:<[^<>]*>|[^\s<>]+)(?:[ \t]+(?:"[^"]*"|\'[^\']*\'|\([^)]*\)))?[ \t]*$'
 )
@@ -114,7 +114,7 @@ def fence_open(s: str):
         return None
     marker, info = m.group(1), m.group(2)
     if marker[0] == '`' and '`' in info:
-        return None  # info string con backtick: non e' un'apertura valida
+        return None  # info string con backtick: non è un'apertura valida
     return marker[0], len(marker)
 
 
@@ -131,7 +131,7 @@ def is_table_delim(s: str) -> bool:
 
 
 def block_kind(s: str) -> str:
-    """Classifica una riga di inizio blocco, indentazione iniziale gia' rimossa."""
+    """Classifica una riga di inizio blocco, indentazione iniziale già rimossa."""
     if is_blank(s):
         return 'blank'
     if fence_open(s):
@@ -196,9 +196,9 @@ RE_ART_ASCII = re.compile(r'^[ \t]*\||^[ \t]*\+[-=+]|\+--|--\+')
 def looks_like_diagram(body: str) -> bool:
     """Vero se la riga sembra parte di uno schema disegnato a caratteri.
 
-    Uno schema ASCII scritto fuori da un blocco di codice e' un paragrafo come
-    gli altri per CommonMark, quindi il rendering non cambia se lo si unisce: e'
-    gia' collassato anche prima. Nel sorgente pero' l'allineamento e' l'intero
+    Uno schema ASCII scritto fuori da un blocco di codice è un paragrafo come
+    gli altri per CommonMark, quindi il rendering non cambia se lo si unisce: è
+    già collassato anche prima. Nel sorgente però l'allineamento è l'intero
     contenuto informativo del disegno, e unirlo lo distrugge. Quando una riga di
     un blocco di testo sembra un disegno, il blocco si emette verbatim."""
     return bool(RE_ART_CHARS.search(body) or RE_ART_ASCII.search(body))
@@ -210,11 +210,11 @@ def code_span_crosses_line(text: str) -> bool:
     Un code span si apre con una sequenza di backtick e si chiude con una
     sequenza della stessa lunghezza esatta; le sequenze di lunghezza diversa
     incontrate dentro un code span sono contenuto, e una sequenza che non si
-    chiude mai e' testo letterale. Solo un code span che si apre su una riga e si
-    chiude su un'altra e' un problema: CommonMark normalizza lo spazio ai bordi
+    chiude mai è testo letterale. Solo un code span che si apre su una riga e si
+    chiude su un'altra è un problema: CommonMark normalizza lo spazio ai bordi
     di un code span, quindi unire quelle righe ne cambierebbe il contenuto reso.
-    In quel caso il paragrafo si emette verbatim, perche' un code span vive
-    dentro un solo blocco e la sua estensione e' quella del paragrafo."""
+    In quel caso il paragrafo si emette verbatim, perché un code span vive
+    dentro un solo blocco e la sua estensione è quella del paragrafo."""
     open_len, open_end = 0, -1
     for match in RE_BACKTICK_RUN.finditer(text):
         run = len(match.group(1))
@@ -233,7 +233,7 @@ def code_span_crosses_line(text: str) -> bool:
 
 class Scanner:
     """Percorre le righe una volta, emette i blocchi verbatim e unisce i soli
-    blocchi di testo. Ogni riga e' una coppia (corpo, terminatore), cosi il
+    blocchi di testo. Ogni riga è una coppia (corpo, terminatore), così il
     terminatore originale di ogni riga sopravvissuta resta quello del file."""
 
     def __init__(self, lines, guard_spans=False):
@@ -244,7 +244,7 @@ class Scanner:
         self.joins = 0
         self.stack = []  # (indentazione del marcatore, indentazione del contenuto)
 
-    # -- utilita' ---------------------------------------------------------- #
+    # -- utilità ---------------------------------------------------------- #
 
     def inner(self, k: int, bq: bool) -> str:
         """Corpo della riga k privato dell'eventuale catena di citazione."""
@@ -299,7 +299,7 @@ class Scanner:
             elif kind in HTML_KINDS:
                 i = self.consume_html(i, bq, kind, s)
             elif kind == 'table-delim':
-                # Riga separatrice senza intestazione davanti: quello che segue e'
+                # Riga separatrice senza intestazione davanti: quello che segue è
                 # corpo di tabella o comunque testo che non conviene toccare.
                 i = self.consume_table(i, bq, skip=1)
             elif kind in ('blank', 'atx', 'tbreak', 'html-standalone'):
@@ -310,8 +310,8 @@ class Scanner:
             elif kind == 'linkdef':
                 i = self.consume_linkdef(i, bq, s)
             elif kind == 'label-text':
-                # Nota a pie' di pagina o testo etichettato: si comporta come una
-                # voce di elenco, cioe' assorbe le proprie righe di continuazione
+                # Nota a piè di pagina o testo etichettato: si comporta come una
+                # voce di elenco, cioè assorbe le proprie righe di continuazione
                 # conservando il prefisso `[etichetta]: `.
                 i = self.collect_run(i, bq, base)
             elif self.table_starts_at(i, bq, s):
@@ -339,7 +339,7 @@ class Scanner:
             if self.lines[k][0].rstrip() in closers:
                 self.emit(0, k + 1)
                 return k + 1
-        return 0  # nessuna chiusura: non e' front matter, e' altro
+        return 0  # nessuna chiusura: non è front matter, è altro
 
     def consume_fence(self, i: int, bq: bool, s: str) -> int:
         char, length = fence_open(s)
@@ -401,7 +401,7 @@ class Scanner:
         return last_code + 1
 
     def consume_linkdef(self, i: int, bq: bool, s: str) -> int:
-        """Definizione di link di riferimento: riga a se', piu' l'eventuale
+        """Definizione di link di riferimento: riga a sé, più l'eventuale
         continuazione (URL o titolo su riga propria) che le appartiene."""
         j = i + 1
         rest = RE_LINKDEF.match(s).group(1).strip()
@@ -498,10 +498,10 @@ class Scanner:
             j += 1
 
         # Deciso l'intervallo del blocco, due controlli sull'insieme delle sue
-        # righe. Uno schema disegnato a caratteri ferma sempre l'unione, perche'
-        # il rendering non lo protegge: e' il sorgente a perderci. Un code span
+        # righe. Uno schema disegnato a caratteri ferma sempre l'unione, perché
+        # il rendering non lo protegge: è il sorgente a perderci. Un code span
         # che attraversa un a capo la ferma solo nella passata prudente, quella
-        # di riserva, perche' quasi sempre unire e' innocuo e l'arbitro giusto e'
+        # di riserva, perché quasi sempre unire è innocuo e l'arbitro giusto è
         # l'oracolo di rendering, non un'euristica.
         if not verbatim and j > i + 1:
             bodies = [self.lines[k][0] for k in range(i, j)]
@@ -538,7 +538,7 @@ def unwrap(text: str, guard_spans: bool = False):
     """Restituisce (testo srotolato, numero di righe unite).
 
     Con `guard_spans` non si uniscono i blocchi attraversati da un code span
-    inline: e' la passata prudente di riserva, usata quando l'oracolo boccia il
+    inline: è la passata prudente di riserva, usata quando l'oracolo boccia il
     risultato della passata normale."""
     bom = ''
     if text.startswith('\ufeff'):
@@ -565,7 +565,7 @@ _ORACLE = None
 
 
 def get_oracle():
-    """Renderer CommonMark+GFM se `markdown-it-py` e' disponibile, altrimenti None."""
+    """Renderer CommonMark+GFM se `markdown-it-py` è disponibile, altrimenti None."""
     global _ORACLE
     if _ORACLE is None:
         try:
@@ -622,7 +622,7 @@ def write_text(path: str, text: str) -> None:
 def display_path(path: str) -> str:
     """Percorso da mostrare: relativo se possibile, altrimenti assoluto. Su Windows
     `relpath` solleva un'eccezione quando il file sta su un altro disco rispetto
-    alla cartella corrente, ed e' un caso normale, non un errore."""
+    alla cartella corrente, ed è un caso normale, non un errore."""
     try:
         return os.path.relpath(path)
     except ValueError:
@@ -649,7 +649,7 @@ _MARKER_CACHE = {}
 def dir_is_marked(dirpath: str) -> bool:
     """Vero se la cartella, o una qualsiasi delle sue antenate, contiene il file
     marcatore `.md-unwrap-ignore`: quel sottoalbero non si tocca. Serve a proteggere
-    materiale che deve restare byte per byte com'e', per esempio le fixture di test."""
+    materiale che deve restare byte per byte com'è, per esempio le fixture di test."""
     dirpath = os.path.abspath(dirpath)
     chain = []
     current = dirpath
@@ -678,7 +678,7 @@ def collect_files(paths, exts, excludes, only_tracked=False):
         if only_tracked and os.path.isdir(target):
             # Enumerare da git invece che dal filesystem: in un repository che
             # contiene un corpus non tracciato di centinaia di migliaia di file,
-            # camminare l'albero costa minuti e serve a nulla, perche' i file da
+            # camminare l'albero costa minuti e serve a nulla, perché i file da
             # processare sono solo quelli che git conosce.
             prefix = os.path.normcase(target + os.sep)
             entries = tracked_files(target)
@@ -750,8 +750,8 @@ def tracked_files(dirpath: str):
     """File tracciati da git nel repository che contiene `dirpath`, come dizionario
     dal percorso assoluto normalizzato (per il confronto, che su Windows va fatto
     senza distinzione di maiuscole) al percorso reale (per aprire il file e per
-    scriverlo nei messaggi con il nome giusto). Dizionario vuoto se non e' un
-    repository o se git non e' disponibile. Memoizzato per radice."""
+    scriverlo nei messaggi con il nome giusto). Dizionario vuoto se non è un
+    repository o se git non è disponibile. Memoizzato per radice."""
     try:
         top = subprocess.run(
             ['git', '-C', dirpath, 'rev-parse', '--show-toplevel'],
@@ -862,13 +862,13 @@ def main(argv=None) -> int:
 
         reason = verify(before, after, args.oracle)
         if reason:
-            # Ripiego prudente: si rifa' la passata senza unire i blocchi
-            # attraversati da un code span inline, che e' l'unico costrutto in
+            # Ripiego prudente: si rifà la passata senza unire i blocchi
+            # attraversati da un code span inline, che è l'unico costrutto in
             # grado di cambiare il reso pur restando dentro un solo paragrafo.
             after, joins = unwrap(before, guard_spans=True)
             if after == before:
-                # Non e' un errore: il file e' gia' nella forma migliore ottenibile
-                # senza cambiare il reso, e non c'e' altro da unire in sicurezza.
+                # Non è un errore: il file è già nella forma migliore ottenibile
+                # senza cambiare il reso, e non c'è altro da unire in sicurezza.
                 if not args.quiet:
                     say('intatto %s: nulla da unire senza cambiare il rendering' % rel)
                 continue
