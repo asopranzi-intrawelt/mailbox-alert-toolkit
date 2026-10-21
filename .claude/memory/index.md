@@ -6,7 +6,7 @@
 
 ```
 Branch attivo:         main
-Commit di riferimento: a8eab4c
+Commit di riferimento: 152deac
 Data snapshot:         2026-06-18
 ```
 
@@ -14,12 +14,12 @@ Data snapshot:         2026-06-18
 
 | Scheda | last-verified | Stato |
 |---|---|---|
-| STACK.md | a8eab4c | aggiornata |
-| design-and-security.md | a8eab4c | aggiornata |
-| deployment.md | a8eab4c | aggiornata |
-| dev-testing.md | a8eab4c | aggiornata |
-| current-work.md | a8eab4c | aggiornata |
-| roadmap.md | a8eab4c | aggiornata |
+| STACK.md | 152deac | aggiornata |
+| design-and-security.md | 152deac | aggiornata |
+| deployment.md | 152deac | aggiornata |
+| dev-testing.md | 152deac | aggiornata |
+| current-work.md | 152deac | aggiornata |
+| roadmap.md | 152deac | aggiornata |
 
 ## Punto di ripresa
 

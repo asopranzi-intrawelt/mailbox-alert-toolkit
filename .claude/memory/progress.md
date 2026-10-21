@@ -4,7 +4,7 @@
 
 ## 2026-06-18 - Popolamento schede context e ancoraggio a HEAD
 
-Eseguita sync-context su repo appena inizializzato. Tutte e sei le schede di `.claude/context/` erano template vuoti: popolate da zero leggendo il codice (`mailbox-alert.ps1`, `launcher.ps1`, `generate_mailbox_report.py`, `generate_trends.py`, `config.example.json`, `README.md`). Schede ancorate: STACK.md, design-and-security.md, deployment.md, dev-testing.md, current-work.md, roadmap.md. `memory/index.md` compilato con stato e punto di ripresa. Commit di riferimento: a8eab4c.
+Eseguita sync-context su repo appena inizializzato. Tutte e sei le schede di `.claude/context/` erano template vuoti: popolate da zero leggendo il codice (`mailbox-alert.ps1`, `launcher.ps1`, `generate_mailbox_report.py`, `generate_trends.py`, `config.example.json`, `README.md`). Schede ancorate: STACK.md, design-and-security.md, deployment.md, dev-testing.md, current-work.md, roadmap.md. `memory/index.md` compilato con stato e punto di ripresa. Commit di riferimento: 152deac.
 
 ## 2026-06-18 - Adozione standard e identita git
 

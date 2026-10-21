@@ -1,12 +1,12 @@
 ---
-generated-from-commit: a8eab4c
+generated-from-commit: 152deac
 generated-from-branch: main
 generated-date: 2026-06-18
 covers-paths:
   - "**/*.ps1"
   - "**/*.py"
   - config.example.json
-last-verified-commit: a8eab4c
+last-verified-commit: 152deac
 ---
 
 # Stack applicativo
