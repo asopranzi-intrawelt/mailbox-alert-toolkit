@@ -28,3 +28,6 @@ README.docx
 fix-scheduled-tasks.ps1
 fix-scheduled-tasks.log
 
+
+# --- Layer privato (pattern e mappa di anonimizzazione, materiale grezzo) ---
+_notes/
